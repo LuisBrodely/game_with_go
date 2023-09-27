@@ -23,8 +23,8 @@ func (s *MenuScene) Render() {
     backgroundImage.Resize(fyne.NewSize(800,600))
 	backgroundImage.Move( fyne.NewPos(0,0) )
 	
-	botonIniciar := widget.NewButton("Start Game", s.StartGame)
-	botonIniciar.Resize(fyne.NewSize(150,30))
+	botonIniciar := widget.NewButton("Comenzar a jugar", s.StartGame)
+	botonIniciar.Resize(fyne.NewSize(160, 40))
 	botonIniciar.Move(fyne.NewPos(325,500))
 
 	s.window.SetContent(container.NewWithoutLayout(backgroundImage, botonIniciar)) 

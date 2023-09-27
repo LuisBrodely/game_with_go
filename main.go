@@ -8,7 +8,7 @@ import (
 
 func main(){
 	myApp := app.New()
-	window := myApp.NewWindow("Tux Revenge")
+	window := myApp.NewWindow("TheSimpsons Game")
 
 	window.CenterOnScreen()
 	window.SetFixedSize(true)

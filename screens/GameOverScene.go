@@ -26,8 +26,8 @@ func (s *GameOverScene) Render() {
 
 
 	btnRestart := widget.NewButton("Volver a jugar", s.restart)
-	btnRestart.Resize(fyne.NewSize(150,30))
-	btnRestart.Move(fyne.NewPos(440, 460))
+	btnRestart.Resize(fyne.NewSize(160, 40))
+	btnRestart.Move(fyne.NewPos(420, 460))
 	
 
 	s.window.SetContent(container.NewWithoutLayout(backgroundImage, btnRestart)) 
