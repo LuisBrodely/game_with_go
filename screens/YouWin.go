@@ -23,7 +23,7 @@ func (s *YouWin) Render() {
     backgroundImage.Resize(fyne.NewSize(800, 600))
     backgroundImage.Move(fyne.NewPos(0, 0))
 
-    btnExit := widget.NewButton("Salir", s.exitGame) // Cambiar el texto y la función
+    btnExit := widget.NewButton("Salir", s.exitGame) 
     btnExit.Resize(fyne.NewSize(160, 40))
     btnExit.Move(fyne.NewPos(70, 470))
 
@@ -31,5 +31,5 @@ func (s *YouWin) Render() {
 }
 
 func (s *YouWin) exitGame() {
-    s.window.Close() // Cierra la ventana y sale del juego
+    s.window.Close() 
 }

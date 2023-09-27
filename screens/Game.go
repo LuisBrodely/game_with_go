@@ -110,10 +110,10 @@ func (s *GameScene) showYouWin() {
 func (s *GameScene) checkGameOver() {
     running := true
     for running {
-        if c.GetGameOver() || s.getScore() >= 1000 { 
+        if c.GetGameOver() || s.getScore() >= 1 { 
             running = false
             time.Sleep(1000 * time.Millisecond)
-            if s.getScore() >= 1000 {
+            if s.getScore() >= 1 {
                 s.showYouWin() 
             } else {
                 NewGameOverScreen(s.window) 
@@ -124,7 +124,7 @@ func (s *GameScene) checkGameOver() {
 
 func (s *GameScene) updateScoreLabel() {
     scoreStr := strconv.Itoa(s.getScore())
-    s.scoreLabel.SetText("Score: " + scoreStr)
+    s.scoreLabel.SetText("Puntos: " + scoreStr)
 }
 
 func createPeel(fileURI string, sizeX float32, sizeY float32, posX float32, posY float32) *canvas.Image {
