@@ -9,13 +9,13 @@ import (
     "fyne.io/fyne/v2/storage"
     "fyne.io/fyne/v2/widget"
     "time"
-    "strconv" // Importar el paquete strconv para convertir el puntaje a cadena
+    "strconv" 
 )
 
 type GameScene struct {
     window fyne.Window
-    score  int // Variable para llevar el conteo de puntos
-    scoreLabel *widget.Label // Label para mostrar el puntaje
+    score  int 
+    scoreLabel *widget.Label 
 }
 
 var t *models.Homero
@@ -24,7 +24,7 @@ var c *driver.CollisionDriver
 
 func NewGameScene(window fyne.Window) *GameScene {
     scene := &GameScene{window: window}
-    scene.score = 0 // Inicializa el conteo de puntos
+    scene.score = 0 
     scene.Render()
     scene.StartGame()
     return scene
@@ -51,7 +51,6 @@ func (s *GameScene) Render() {
     btnRight.Resize(fyne.NewSize(80, 80))
     btnRight.Move(fyne.NewPos(720, 520))
 
-    // Agregar el marcador de puntuación
     s.scoreLabel = widget.NewLabel("Score: 0")
     s.scoreLabel.Move(fyne.NewPos(10, 10))
 
@@ -63,7 +62,7 @@ func (s *GameScene) Render() {
         DonaPeel,
         btnLeft,
         btnRight,
-        s.scoreLabel, // Agregar el marcador al contenido
+        s.scoreLabel, 
     ))
 }
 
@@ -86,7 +85,7 @@ func (s *GameScene) StartGame() {
 
 func (s *GameScene) incrementScore() {
     s.score++
-    s.updateScoreLabel() // Actualizar el texto del marcador
+    s.updateScoreLabel() 
 }
 
 func (s *GameScene) getScore() int {
@@ -104,13 +103,21 @@ func (s *GameScene) countScore() {
     }
 }
 
+func (s *GameScene) showYouWinScene() {
+    NewYouWinScene(s.window) 
+}
+
 func (s *GameScene) checkGameOver() {
     running := true
     for running {
-        if c.GetGameOver() || s.getScore() >= 50 { // Cambia 10 a la cantidad deseada de puntos para mostrar Game Over
+        if c.GetGameOver() || s.getScore() >= 10 { 
             running = false
-            time.Sleep(2000 * time.Millisecond)
-            NewGameOverScene(s.window)
+            time.Sleep(1000 * time.Millisecond)
+            if s.getScore() >= 10 {
+                s.showYouWinScene() 
+            } else {
+                NewGameOverScene(s.window) 
+            }
         }
     }
 }
