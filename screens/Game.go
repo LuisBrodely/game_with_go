@@ -110,10 +110,10 @@ func (s *GameScene) showYouWin() {
 func (s *GameScene) checkGameOver() {
     running := true
     for running {
-        if c.GetGameOver() || s.getScore() >= 1 { 
+        if c.GetGameOver() || s.getScore() >= 15 { 
             running = false
             time.Sleep(1000 * time.Millisecond)
-            if s.getScore() >= 1 {
+            if s.getScore() >= 15 {
                 s.showYouWin() 
             } else {
                 NewGameOverScreen(s.window) 
