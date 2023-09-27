@@ -18,8 +18,8 @@ type GameScene struct {
     scoreLabel *widget.Label 
 }
 
-var t *models.Homero
-var w *models.Dona
+var h *models.Homero
+var d *models.Dona
 var c *driver.CollisionMechanic
 
 func NewGameScene(window fyne.Window) *GameScene {
@@ -36,18 +36,18 @@ func (s *GameScene) Render() {
     backgroundImage.Move(fyne.NewPos(0, 0))
 
     HomeroPeel := createPeel("./assets/homero.png", 100, 100, 100, 450)
-    t = models.NewHomero(350, 450, HomeroPeel)
+    h = models.NewHomero(350, 450, HomeroPeel)
 
     DonaPeel := createPeel("./assets/dona.png", 100, 100, 100, 50)
-    w = models.NewDona(350, 600, DonaPeel, t)
+    d = models.NewDona(350, 600, DonaPeel, h)
 
-    c = driver.NewCollisionMechanic(t, w)
+    c = driver.NewCollisionMechanic(h, d)
 
-    btnLeft := widget.NewButton("<", t.GoLeft)
+    btnLeft := widget.NewButton("<", h.GoLeft)
     btnLeft.Resize(fyne.NewSize(80, 80))
     btnLeft.Move(fyne.NewPos(0, 520))
 
-    btnRight := widget.NewButton(">", t.GoRight)
+    btnRight := widget.NewButton(">", h.GoRight)
     btnRight.Resize(fyne.NewSize(80, 80))
     btnRight.Move(fyne.NewPos(720, 520))
 
@@ -69,16 +69,16 @@ func (s *GameScene) Render() {
 func (s *GameScene) handleArrowKeys(ev *fyne.KeyEvent) {
     switch ev.Name {
     case "Left":
-        t.GoLeft()
+        h.GoLeft()
     case "Right":
-        t.GoRight()
+        h.GoRight()
     }
 }
 
 func (s *GameScene) StartGame() {
     go s.countScore()
-    go t.Run()
-    go w.Run()
+    go h.Run()
+    go d.Run()
     go c.Run()
     go s.checkGameOver()
 }
