@@ -14,6 +14,6 @@ func main(){
 	window.SetFixedSize(true)
 	window.Resize(fyne.NewSize(800, 600))
 	
-	scenes.NewMenuScene( window )
+	scenes.NewMenu( window )
 	window.ShowAndRun()
 }

@@ -8,17 +8,17 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-type GameOverScene struct {
+type GameOverScreen struct {
 	window fyne.Window
 }
 
-func NewGameOverScene(fyneWindow fyne.Window) *GameOverScene {
-	scene := &GameOverScene{window: fyneWindow}
+func NewGameOverScreen(fyneWindow fyne.Window) *GameOverScreen {
+	scene := &GameOverScreen{window: fyneWindow}
 	scene.Render()
 	return scene
 }
 
-func (s *GameOverScene) Render() {
+func (s *GameOverScreen) Render() {
 
 	backgroundImage := canvas.NewImageFromURI( storage.NewFileURI("./assets/over.png") )
     backgroundImage.Resize(fyne.NewSize(800,600))
@@ -33,9 +33,9 @@ func (s *GameOverScene) Render() {
 	s.window.SetContent(container.NewWithoutLayout(backgroundImage, btnRestart)) 
 }
 
-func (s *GameOverScene) goMenu() {
-	NewMenuScene(s.window)
+func (s *GameOverScreen) goMenu() {
+	NewMenu(s.window)
 }
-func (s *GameOverScene) restart() {
+func (s *GameOverScreen) restart() {
 	NewGameScene(s.window)
 }

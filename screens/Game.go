@@ -1,7 +1,7 @@
 package scenes
 
 import (
-    "SimpsonsGame/driver"
+    "SimpsonsGame/collision"
     "SimpsonsGame/models"
     "fyne.io/fyne/v2"
     "fyne.io/fyne/v2/canvas"
@@ -20,7 +20,7 @@ type GameScene struct {
 
 var t *models.Homero
 var w *models.Dona
-var c *driver.CollisionDriver
+var c *driver.CollisionMechanic
 
 func NewGameScene(window fyne.Window) *GameScene {
     scene := &GameScene{window: window}
@@ -41,7 +41,7 @@ func (s *GameScene) Render() {
     DonaPeel := createPeel("./assets/dona.png", 100, 100, 100, 50)
     w = models.NewDona(350, 600, DonaPeel, t)
 
-    c = driver.NewCollisionDriver(t, w)
+    c = driver.NewCollisionMechanic(t, w)
 
     btnLeft := widget.NewButton("<", t.GoLeft)
     btnLeft.Resize(fyne.NewSize(80, 80))
@@ -103,20 +103,20 @@ func (s *GameScene) countScore() {
     }
 }
 
-func (s *GameScene) showYouWinScene() {
-    NewYouWinScene(s.window) 
+func (s *GameScene) showYouWin() {
+    NewYouWin(s.window) 
 }
 
 func (s *GameScene) checkGameOver() {
     running := true
     for running {
-        if c.GetGameOver() || s.getScore() >= 10 { 
+        if c.GetGameOver() || s.getScore() >= 1000 { 
             running = false
             time.Sleep(1000 * time.Millisecond)
-            if s.getScore() >= 10 {
-                s.showYouWinScene() 
+            if s.getScore() >= 1000 {
+                s.showYouWin() 
             } else {
-                NewGameOverScene(s.window) 
+                NewGameOverScreen(s.window) 
             }
         }
     }

@@ -7,19 +7,19 @@ import (
 var t *models.Homero
 var w *models.Dona
 
-type CollisionDriver struct {
+type CollisionMechanic struct {
 	gameOver bool
 }
 
-func NewCollisionDriver(Homero *models.Homero, Dona *models.Dona) *CollisionDriver {
+func NewCollisionMechanic(Homero *models.Homero, Dona *models.Dona) *CollisionMechanic {
 	t = Homero
 	w = Dona
-	return &CollisionDriver{
+	return &CollisionMechanic{
 		gameOver: false,
 	}
 }
 
-func (c *CollisionDriver) Run() {
+func (c *CollisionMechanic) Run() {
 	for !c.gameOver{
 		if w.GetPosY() >= 400 {
 			if w.GetPosX() >= t.GetPosX()-50 && w.GetPosX() <= t.GetPosX()+50 {
@@ -31,6 +31,6 @@ func (c *CollisionDriver) Run() {
 	}
 }
 
-func (c *CollisionDriver) GetGameOver() bool {
+func (c *CollisionMechanic) GetGameOver() bool {
 	return c.gameOver
 }

@@ -8,17 +8,17 @@ import (
     "fyne.io/fyne/v2/widget"
 )
 
-type YouWinScene struct {
+type YouWin struct {
     window fyne.Window
 }
 
-func NewYouWinScene(fyneWindow fyne.Window) *YouWinScene {
-    scene := &YouWinScene{window: fyneWindow}
+func NewYouWin(fyneWindow fyne.Window) *YouWin {
+    scene := &YouWin{window: fyneWindow}
     scene.Render()
     return scene
 }
 
-func (s *YouWinScene) Render() {
+func (s *YouWin) Render() {
     backgroundImage := canvas.NewImageFromURI(storage.NewFileURI("./assets/ganaste.png"))
     backgroundImage.Resize(fyne.NewSize(800, 600))
     backgroundImage.Move(fyne.NewPos(0, 0))
@@ -30,6 +30,6 @@ func (s *YouWinScene) Render() {
     s.window.SetContent(container.NewWithoutLayout(backgroundImage, btnExit))
 }
 
-func (s *YouWinScene) exitGame() {
+func (s *YouWin) exitGame() {
     s.window.Close() // Cierra la ventana y sale del juego
 }
